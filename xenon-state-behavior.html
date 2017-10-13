@@ -1,0 +1,19 @@
+﻿<link rel="import" href="../polymer/polymer.html">
+<script src="us-states.js"></script>
+<script>
+    window.ACAXLabs = window.ACAXLabs || {} ;
+    ACAXLabs.XenonStateBehavior = {
+        getStateName: function (statecode) {
+            if (statecode === undefined || statecode == null || statecode === "") return "";
+            for (var i = 0; i < ussstates.length; i++) {
+                if (usstates[i].abbreviation == statecode) return usstates[i].name;
+            }
+            return "";
+        }
+    }
+</script>
+function findCherries(fruit) {
+    return fruit.name === 'cherries';
+}
+
+console.log(inventory.find(findCherries));
