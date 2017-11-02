@@ -13,7 +13,7 @@
   ],
 	"dependencies": {
 	  "polymer": "Polymer/polymer#^1.2.0",
-	  "xenon-dropdown" : "ACAXLabs/xenon-dropdown#^1"
+	  "xenon-dropdown" : "ACAXLabs/xenon-dropdown"
 	},
 	 "devDependencies": {
 	}
