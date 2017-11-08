@@ -1,4 +1,4 @@
-﻿<link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="../polymer/polymer.html" />
 <link rel="import" href="../xenon-dropdown/xenon-dropdown.html"/>
 <link rel="import" href="../iron-form-element-behavior/iron-form-element-behavior.html">
 <link rel="import" href="../iron-validatable-behavior/iron-validatable-behavior.html"/>
@@ -17,9 +17,9 @@ Example:
 -->
 <dom-module id="xenon-state-input">
     <template>
-        <xenon-dropdown id="dp" label="[[label]]" selected="{{state}}" error-message="[[errorMessage]]" required="[[required]]">
+        <xenon-dropdown id="dp" label="[[label]]" selected="{{stateCode}}" error-message="[[errorMessage]]" required="[[required]]">
             <template is="dom-repeat" items="[[USStates]]">
-                <div value="[[item]]">[[item.name]]</div>
+                <div value="[[item.abbreviation]]">[[item.name]]</div>
             </template>
         </xenon-dropdown>
     </template>
@@ -30,15 +30,16 @@ Example:
                 errorMessage:String,
                 required:{type:Boolean, notify:true, reflectToAttribute:true },
                 label:String,
-			    state: { type: Object, notify: true, observer:"_onStateChanged" },
-			    stateCode: { type: String, notify: true },
+			    state: { type: Object, notify: true },
+                stateCode: { type: String, notify: true, observer: "_onStateChanged" },
 			    stateName: { type: String, notify: true },
-			    states: { type: Array, notify: true, value: [] }
 			},
-			_onStateChanged: function (state) {
-			    if (state === undefined) return;
-			    this.set("stateCode", state.abbreviation);
-			    this.set("stateName", state.name);
+			_onStateChanged: function (stateCode) {
+			    if (stateCode === undefined) return;
+                var state = this.USStates.find(function (s) { return s.abbreviation == stateCode; });
+                if (state == undefined) return;
+                this.set("state", state);
+                this.set("stateName", state.name);
 			},
 			behaviors: [
               Polymer.IronValidatableBehavior,
