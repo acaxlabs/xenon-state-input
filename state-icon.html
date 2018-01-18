@@ -1,0 +1,72 @@
+﻿<link rel="import" href="../polymer/polymer.html" />
+<dom-module id="state-icon">
+    <template>
+        <style>
+            .stateface:before { font-family: StateFaceRegular; margin-right: 5px; }
+            .stateface-replace { text-indent: -999em; display: inline-block; position: relative; min-width: 1em; }
+                .stateface-replace:before { position: absolute; left: 0; margin-top: -10px; text-indent: 0; }
+            .stateface-AK:before { content: "A"; }
+            .stateface-AL:before { content: "B"; }
+            .stateface-AR:before { content: "C"; }
+            .stateface-AZ:before { content: "D"; }
+            .stateface-CA:before { content: "E"; }
+            .stateface-CO:before { content: "F"; }
+            .stateface-CT:before { content: "G"; }
+            .stateface-DC:before { content: "y"; }
+            .stateface-DE:before { content: "H"; }
+            .stateface-FL:before { content: "I"; }
+            .stateface-GA:before { content: "J"; }
+            .stateface-HI:before { content: "K"; }
+            .stateface-IA:before { content: "L"; }
+            .stateface-ID:before { content: "M"; }
+            .stateface-IL:before { content: "N"; }
+            .stateface-IN:before { content: "O"; }
+            .stateface-KS:before { content: "P"; }
+            .stateface-KY:before { content: "Q"; }
+            .stateface-LA:before { content: "R"; }
+            .stateface-MA:before { content: "S"; }
+            .stateface-MD:before { content: "T"; }
+            .stateface-ME:before { content: "U"; }
+            .stateface-MI:before { content: "V"; }
+            .stateface-MN:before { content: "W"; }
+            .stateface-MO:before { content: "X"; }
+            .stateface-MS:before { content: "Y"; }
+            .stateface-MT:before { content: "Z"; }
+            .stateface-NC:before { content: "a"; }
+            .stateface-ND:before { content: "b"; }
+            .stateface-NE:before { content: "c"; }
+            .stateface-NH:before { content: "d"; }
+            .stateface-NJ:before { content: "e"; }
+            .stateface-NM:before { content: "f"; }
+            .stateface-NV:before { content: "g"; }
+            .stateface-NY:before { content: "h"; }
+            .stateface-OH:before { content: "i"; }
+            .stateface-OK:before { content: "j"; }
+            .stateface-OR:before { content: "k"; }
+            .stateface-PA:before { content: "l"; }
+            .stateface-RI:before { content: "m"; }
+            .stateface-SC:before { content: "n"; }
+            .stateface-SD:before { content: "o"; }
+            .stateface-TN:before { content: "p"; }
+            .stateface-TX:before { content: "q"; }
+            .stateface-US:before { content: "z"; }
+            .stateface-UT:before { content: "r"; }
+            .stateface-VA:before { content: "s"; }
+            .stateface-VT:before { content: "t"; }
+            .stateface-WA:before { content: "u"; }
+            .stateface-WI:before { content: "v"; }
+            .stateface-WV:before { content: "w"; }
+            .stateface-WY:before { content: "x"; }
+            @font-face { font-family: 'StateFaceRegular'; src: url('../../font/stateface-regular-webfont.eot'); src: url('../../font/stateface-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../../font/stateface-regular-webfont.woff') format('woff'), url('../../font/stateface-regular-webfont.ttf') format('truetype'), url('../../font/stateface-regular-webfont.svg#StateFaceRegular') format('svg'); font-weight: normal; font-style: normal; }
+        </style>
+        <span class$="stateface stateface-replace stateface-{{state.abbreviation}}"></span>
+    </template>
+    <script>
+		Polymer({
+			is:"state-icon",
+            properties: {
+                state: { type: Object, notify: true, },
+            },
+		});
+    </script>
+</dom-module>
