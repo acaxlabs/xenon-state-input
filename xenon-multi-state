@@ -1,0 +1,40 @@
+﻿<link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="../paper-checkbox/paper-checkbox.html" />
+<link rel="import" href="../xenon-layout/xenon-field-group.html" />
+<link rel="import" href="state-icon.html" />
+<link rel="import" href="../../../Scripts/stateface.js" />
+<link rel="import" href="xenon-state-behavior.html" />
+<dom-module id="xenon-multi-state">
+    <template>
+        <xenon-field-group style="flex-direction:column">
+            <template is="dom-repeat" items="[[USStates]]">
+             <div style="padding:8px">
+                 <paper-checkbox on-change="checkboxChanged" value="[[item.value]]">
+                     <div style="display:inline;  padding: 4px;">
+                         <state-icon style="padding:-4px;" state="[[item]]"></state-icon>
+                     </div>
+                     <div style="display:inline">
+                         {{item.name}}
+                     </div>
+                 </paper-checkbox>
+             </div>
+            </template>
+        </xenon-field-group>
+    </template>
+    <script>
+        Polymer({
+            is: "xenon-multi-state",
+            properties:{
+                stateAmount: {type: Number, notify: true, value: 0}
+            },
+            checkboxChanged: function (e) {
+                var number = e.target.value;
+                (e.target.checked == true) ? this.set("stateAmount", (this.stateAmount + number)) : this.set("stateAmount", (this.stateAmount - number));
+                console.log(this.stateAmount)
+            },
+            behaviors: [
+                ACAXLabs.XenonStateBehavior
+            ],
+        });
+    </script>
+</dom-module>
