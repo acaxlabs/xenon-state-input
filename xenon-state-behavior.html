@@ -2,6 +2,13 @@
 <script>
     window.ACAXLabs = window.ACAXLabs || {} ;
     ACAXLabs.XenonStateBehavior = {
+        getStateValue: function (statecode) {
+            if (statecode === undefined || statecode == null || statecode === "") return 0;
+            for (var i = 0; i < this.USStates.length; i++) {
+                if (this.USStates[i].abbreviation == statecode) return this.USStates[i].value;
+            }
+            return 0;
+        },
         getStateName: function (statecode) {
             if (statecode === undefined || statecode == null || statecode === "") return "";
             for (var i = 0; i < this.USStates.length; i++) {
