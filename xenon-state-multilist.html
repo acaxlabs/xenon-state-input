@@ -30,14 +30,14 @@ Example:
         </template>
     </template>
     <script>
-		Polymer({
-			is:"xenon-state-multilist",
-            properties: {
-                value: { type: Number, value: 1, notify: true },
-                stateMask: { type: Number, value: 0, observer: "setMask" }
-			},
-			behaviors: [
-              ACAXLabs.XenonStateBehavior
+	Polymer({
+		is:"xenon-state-multilist",
+            	properties: {
+			value: { type: Number, value: 0, notify: true },
+			stateMask: { type: Number, value: 0, observer: "setMask" }
+		},
+		behaviors: [
+              		ACAXLabs.XenonStateBehavior
             ],
             _onCheckboxChanged: function (e) {
                 this.value = e.target.checked ? this.value | e.model.state.value : this.value ^ e.model.state.value;
@@ -52,6 +52,6 @@ Example:
                 });
                 this.set("states", states);
             }
-		});
+	});
     </script>
 </dom-module>
