@@ -1,21 +1,10 @@
-<link rel="import" href="../polymer/polymer.html" />
-<link rel="import" href="../xenon-dropdown/xenon-dropdown.html"/>
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../xenon-dropdown/xenon-dropdown.html">
+<link rel="import" href="../paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../iron-form-element-behavior/iron-form-element-behavior.html">
-<link rel="import" href="../iron-validatable-behavior/iron-validatable-behavior.html"/>
-<link rel="import" href="xenon-state-behavior.html"/>
-<!--
-`<lithium-quote>` is an awesome element.
+<link rel="import" href="../iron-validatable-behavior/iron-validatable-behavior.html">
+<link rel="import" href="xenon-state-behavior.html">
 
-Example:
-
-    <xenon-state-input></xenon-state-input>
-
-### Styling
-    No styling
-
-@element xenon-state-input
-@demo demo/index.html
--->
 <dom-module id="xenon-state-multilist">
     <template>
         <style>
@@ -32,26 +21,31 @@ Example:
     <script>
 	Polymer({
 		is:"xenon-state-multilist",
-            	properties: {
+        properties: {
 			value: { type: Number, value: 0, notify: true },
 			stateMask: { type: Number, value: 0, observer: "setMask" }
 		},
 		behaviors: [
-              		ACAXLabs.XenonStateBehavior
-            ],
-            _onCheckboxChanged: function (e) {
-                this.value = e.target.checked ? this.value | e.model.state.value : this.value ^ e.model.state.value;
-            },
-            setMask: function (mask) {
-                var states = [];
-                var self = this; 
-                this.USStates.forEach(function (state) {
-                    if ((mask & state.value) != state.value) return;
-                    state.checked = state.value & self.value;
-                    states.push(state);
-                });
-                this.set("states", states);
-            }
+            ACAXLabs.XenonStateBehavior
+        ],
+        _onCheckboxChanged: function (e) {
+            this.value = e.target.checked ? this.value | e.model.state.value : this.value ^ e.model.state.value;
+        },
+        setMask: function (mask) {
+            var states = [];
+            var newval = 0;
+            var self = this; 
+            // when the mask changes, reload states array, keep any boxes checked you can
+            this.USStates.forEach(function (state) {
+                if ((mask & state.value) != state.value) return;
+                state.checked = state.value & self.value;
+                states.push(state);
+                if (state.checked) newval |= state.value;
+            });
+            this.set("states", states);
+            // now reset the value to only the states that are still checked
+            this.set("value", newval); 
+        }
 	});
     </script>
 </dom-module>
