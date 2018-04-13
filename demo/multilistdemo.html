@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="../../webcomponentsjs/webcomponents.min.js"></script>
+</head>
+<body>
+    <link rel="import" href="../../polymer/polymer.html">
+    <link rel="import" href="../xenon-state-multilist.html">
+    <dom-module id="demo-element">
+        <template>
+            <xenon-state-multilist id="list" state-mask="5"></xenon-state-multilist>
+            <button on-click="_setX">set 7</button>
+            <button on-click="_setY">set 13</button>
+        </template>
+        <script>
+            HTMLImports.whenReady(function () {
+                Polymer({
+                    is: "demo-element",
+                    _setX: function () {
+                        this.$.list.stateMask = 7;
+                    },
+                    _setY: function () {
+                        this.$.list.stateMask = 13;
+                    }
+                });
+            });
+        </script>
+    </dom-module>
+
+    <demo-element></demo-element>
+</body>
+</html>
