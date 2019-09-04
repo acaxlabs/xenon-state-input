@@ -18,6 +18,9 @@ Example:
 -->
 <dom-module id="xenon-state-input">
     <template>
+        <style>
+            :host{display:block;}
+        </style>
         <xenon-dropdown id="dp" label="[[label]]" selected="{{stateCode}}" error-message="[[errorMessage]]" required="[[required]]">
             <template is="dom-repeat" items="[[USStates]]">
                 <div value="[[item.abbreviation]]">[[item.name]]</div>
